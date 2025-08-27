@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTFA-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manish Kumar – Portfolio</title>
+  <meta name="description" content="Manish Kumar – Netflix‑inspired portfolio: aspiring aviator, creator, sportsperson." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b0f;
+      --bg-soft:#121218;
+      --ink:#e6e6ea;
+      --muted:#9aa0a6;
+      --accent:#e50914;
+      --accent-2:#bb0c14;
+      --chip:#1f1f26;
+      --ok:#23c55e;
+      --warn:#f59f0b;
+      --ring: 0 0 0 2px rgba(229,9,20,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial;line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,rgba(11,11,15,.85),rgba(11,11,15,.65) 60%,rgba(11,11,15,0));backdrop-filter:saturate(140%) blur(6px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}
+    .logo-mark{width:22px;height:22px;border-radius:4px;background:var(--accent);box-shadow:0 8px 24px rgba(229,9,20,.45)}
+    .nav a{opacity:.9}
+    .nav-links{display:flex;flex-wrap:wrap;gap:14px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:var(--accent);color:white;font-weight:600;border:0;cursor:pointer}
+    .btn.secondary{background:#22232b}
+    .btn:focus-visible{outline:none;box-shadow:var(--ring)}
+
+    /* Hero */
+    .hero{padding:72px 24px 32px;background: radial-gradient(1200px 500px at 20% -20%, rgba(229,9,20,.25), transparent 60%),
+                                  radial-gradient(800px 400px at 90% -10%, rgba(88,28,135,.20), transparent 60%)}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+    .title{font-size:clamp(28px,6vw,56px);line-height:1.08;margin:0;font-weight:900}
+    .subtitle{color:var(--muted);font-size:clamp(14px,2.2vw,18px)}
+    .meta{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+    .chip{padding:6px 10px;border-radius:999px;background:var(--chip);color:#cbd5e1;font-size:12px;border:1px solid #242433}
+    .hero-card{background:linear-gradient(180deg,#14141c,#101018);border:1px solid #1f2030;border-radius:18px;padding:18px}
+    .hero-card h4{margin:0 0 8px 0}
+
+    /* Row (Netflix style) */
+    .row{margin:8px 0 22px}
+    .row h2{font-size:22px;margin:16px 6px}
+    .scroller{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(220px,28vw,280px);gap:14px;overflow:auto;padding:6px 6px 14px;scroll-snap-type:x mandatory}
+    .card{scroll-snap-align:start;background:var(--bg-soft);border:1px solid #1e1f2b;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-height:180px}
+    .card .cover{height:110px;background:linear-gradient(135deg,rgba(229,9,20,.12),rgba(255,255,255,.02)), radial-gradient(300px 140px at 80% 10%, rgba(229,9,20,.18), transparent 50%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="%23e50914" offset="0"/><stop stop-color="%231d1d26" offset="1"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/></svg>') center/cover no-repeat}
+    .card .body{padding:14px}
+    .card h3{margin:0 0 6px 0;font-size:16px}
+    .card p{margin:0;color:#c9cbd8;font-size:13px}
+    .pill{font-size:11px;background:#222236;border:1px solid #2b2c3f;color:#bfc3d7;border-radius:999px;padding:6px 8px;display:inline-flex;gap:6px;align-items:center}
+
+    /* Two‑column sections */
+    .section{padding:6px 0 6px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+    /* Footer */
+    footer{margin-top:28px;padding:24px;color:#a1a6b3;border-top:1px solid #1f2030}
+
+    /* Utilities */
+    .muted{color:var(--muted)}
+    .small{font-size:12px}
+    .divider{height:1px;background:#1f2030;margin:14px 0}
+    .hide{display:none}
+
+    /* Responsive styles */
+    @media (max-width: 1200px) {
+      .container {
+        max-width: 98vw;
+        padding: 16px;
+      }
+      .hero {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+    }
+    @media (max-width: 880px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .nav-links{display:none}
+    }
+    @media (max-width: 700px) {
+      .container {
+        padding: 8px;
+      }
+      .hero {
+        padding: 48px 4vw 24px;
+      }
+      .row h2 {
+        font-size: 18px;
+        margin: 12px 2px;
+      }
+      .scroller {
+        grid-auto-columns: 90vw;
+        gap: 10px;
+        padding: 4px 2px 10px;
+      }
+      .card .cover {
+        height: 80px;
+      }
+      .card .body {
+        padding: 10px;
+      }
+      .meta {
+        gap: 8px;
+        margin: 12px 0;
+      }
+      .hero-card {
+        padding: 12px;
+      }
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 2vw;
+      }
+      .hero {
+        padding: 32px 2vw 16px;
+      }
+      .title {
+        font-size: 8vw;
+      }
+      .subtitle {
+        font-size: 4vw;
+      }
+      .row h2 {
+        font-size: 16px;
+      }
+      .card {
+        min-height: 120px;
+      }
+      .card .cover {
+        height: 56px;
+      }
+      .pill, .chip {
+        font-size: 10px;
+        padding: 4px 6px;
+      }
+      .btn, .btn.secondary {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+      .hero-card {
+        border-radius: 12px;
+      }
+    }
+    /* Allow horizontal scrolling on scroller for touch devices */
+    .scroller {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    /* Hide scrollbars on mobile for scroller */
+    @media (max-width: 700px) {
+      .scroller {
+        scrollbar-width: none;
+      }
+      .scroller::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>Manish&nbsp;Kumar</span>
+      </div>
+      <nav class="nav-links small">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#journey">Aviation Journey</a>
+        <a href="#fitness">Fitness</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1 class="title">Aspiring Aviator.<br/> Creator. Sportsperson.</h1>
+        <p class="subtitle">Raised near Air Force bases, I grew up watching aircraft and learning discipline. I hold Class 1 & 2 medicals with a DGCA Computer Number. I’ve led a YouTube production team and freelanced to build financial independence—now channeling that drive into aviation.</p>
+        <div class="meta">
+          <span class="chip">Bengaluru, India</span>
+          <span class="chip">English / Hindi / Kannada</span>
+          <span class="chip">Open to flight training opportunities</span>
+        </div>
+        <div class="meta">
+          <a class="btn" href="#projects">Explore Work</a>
+          <a class="btn secondary" href="#about">More About Me</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h4>Fast Facts</h4>
+        <div class="grid-2 small">
+          <div>
+            <div class="muted">Licenses</div>
+            <div>DGCA Computer No.<br/>Class 1 & 2 Medicals</div>
+          </div>
+          <div>
+            <div class="muted">Education</div>
+            <div>Kendriya Vidyalaya No.2<br/>Class 12 (CS) – 87%<br/>Class 10 – 91%</div>
+          </div>
+          <div>
+            <div class="muted">Interests</div>
+            <div>Backpacking, Plane Spotting, Swimming & Diving, Fitness</div>
+          </div>
+          <div>
+            <div class="muted">Contact</div>
+            <div><a href="mailto:manishhaker@gmail.com">manishhaker@gmail.com</a><br/><span class="small">+91 63661 85856</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="row">
+        <h2>About</h2>
+        <div class="grid-2">
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Summary</h3>
+            <p>I am Manish Kumar. After finishing Class 12 (PCMCs) in 2021, I aligned my career with aviation. I obtained the DGCA Computer Number and completed Class 1 and Class 2 medicals. Parallelly, I built independence by freelancing and leading a YouTube production team.</p>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>What I’m Aiming For</h3>
+            <p>Enroll in professional flight training, sharpen airmanship, and contribute to India’s aviation ecosystem.</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <div class="row">
+        <h2>Experience</h2>
+        <div class="scroller">
+          <article class="card"><div class="cover"></div><div class="body">
+            <h3>Freelancer</h3>
+            <p class="muted small">2019 – Present</p>
+            <p>Delivered freelance projects to fund training & personal growth; built client communication, adaptability, and problem‑solving skills.</p>
+            <div class="meta"><span class="pill">Multitasking</span><span class="pill">Client work</span></div>
+          </div></article>
+          <article class="card"><div class="cover"></div><div class="body">
+            <h3>YouTube Production Lead</h3>
+            <p class="muted small">2018 – 2021</p>
+            <p>Led a small content team, managed scripting → filming → editing pipelines, published consistently, and analyzed performance.</p>
+            <div class="meta"><span class="pill">Leadership</span><span class="pill">Content Ops</span></div>
+          </div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & LICENSES -->
+    <section id="education" class="section">
+      <div class="row">
+        <h2>Education & Licenses</h2>
+        <div class="scroller">
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Kendriya Vidyalaya No.2</h3>
+            <p>Class 12 (Computer Science), Jul 2021 – 87%</p>
+            <p>Class 10 (CBSE), Jun 2019 – 91%</p>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>DGCA</h3>
+            <p>Computer Number issued</p>
+            <p>Class 1 & 2 Medicals – Current</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP & ACHIEVEMENTS -->
+    <section id="achievements" class="section">
+      <div class="row">
+        <h2>Leadership & Achievements</h2>
+        <div class="scroller">
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>National Science Congress (2016)</h3>
+            <p>Built an economical drone from scratch in Grade 9.</p>
+            <div class="meta"><span class="pill">DIY</span><span class="pill">Aero</span></div>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Sports Captain (2020)</h3>
+            <p>Led & managed annual sports events at KV No.2.</p>
+            <div class="meta"><span class="pill">Leadership</span><span class="pill">Teamwork</span></div>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>NCC ‘A’ Certificate (2016)</h3>
+            <p>Participated in camps and parades at multiple locations.</p>
+            <div class="meta"><span class="pill">Discipline</span></div>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Handball & Basketball</h3>
+            <p>Nationals & Opens (2016, 2018, 2020).</p>
+            <div class="meta"><span class="pill">Athletics</span></div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="row">
+        <h2>Projects</h2>
+        <div class="scroller">
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>COVID Donation Platform</h3>
+            <p>Developed a simple donation website during the pandemic to help connect people with resources.</p>
+            <div class="meta"><span class="pill"><a href="https://helpuandme1.zyrosite.com/">website</a></span></div>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Economical Drone</h3>
+            <p>Designed & assembled a working quadcopter showcased at National Science Congress (2016).</p>
+            <div class="meta"><span class="pill">Electronics</span><span class="pill">Flight</span></div>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>YouTube Channel</h3>
+            <p>Produced & shipped videos with a small team; iterated using analytics.</p>
+            <p class="small"><a href="https://youtube.com/@okovo01?feature=shared" target="_blank" rel="noopener">youtube.com/@okovo01</a></p>
+            <div class="meta"><span class="pill">Production</span><span class="pill">Editing</span></div>
+          </div></div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- AVIATION JOURNEY -->
+    <section id="journey" class="section">
+      <div class="row">
+        <h2>Aviation Journey</h2>
+        <div class="grid-2">
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Origins</h3>
+            <p>Grew up around Air Force bases—early exposure to aircraft operations shaped my ambitions.</p>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Preparation</h3>
+            <p>Completed Class 1 & 2 medicals and obtained DGCA Computer Number; studying procedures, meteorology, and airmanship fundamentals.</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FITNESS & SPORTS -->
+    <section id="fitness" class="section">
+      <div class="row">
+        <h2>Fitness & Sports</h2>
+        <div class="scroller">
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Handball / Basketball</h3>
+            <p>Nationals & Opens; teamwork, discipline, match fitness.</p>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Swimming & Diving</h3>
+            <p>Endurance and breath control training.</p>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>General Fitness</h3>
+            <p>Strength & conditioning routines to support flight training readiness.</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERSONAL PROJECTS (extra showcase) -->
+    <section id="personal" class="section">
+      <div class="row">
+        <h2>Personal Projects</h2>
+        <div class="scroller">
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Backpacking Logs</h3>
+            <p>Planning & executing budget trips; logistics, safety, and documentation.</p>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Plane Spotting</h3>
+            <p>Capturing traffic around local airports; aircraft recognition and ATC listening.</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS & LANGUAGES -->
+    <section id="skills" class="section">
+      <div class="row">
+        <h2>Skills & Languages</h2>
+        <div class="grid-2">
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Soft Skills</h3>
+            <p>Multitasking • Adaptability • Problem Solving</p>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Languages</h3>
+            <p>English (Highly Proficient) • Hindi (Native) • Kannada (Conversational)</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG (optional, can hide) -->
+    <section id="blog" class="section">
+      <div class="row">
+        <h2>Blog</h2>
+        <div class="scroller" id="blog-cards">
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Coming Soon</h3>
+            <p>Write about aviation training, procedures, or fitness. (This section is optional; toggle below.)</p>
+          </div></div>
+        </div>
+        <div class="small muted" style="margin:8px 6px">
+          <label><input type="checkbox" id="toggleBlog" checked> Show blog section</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / SOCIALS -->
+    <section id="contact" class="section">
+      <div class="row">
+        <h2>Contact & Socials</h2>
+        <div class="grid-2">
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Reach Me</h3>
+            <p>Email: <a href="mailto:manishhaker@gmail.com">manishhaker@gmail.com</a><br>Phone: +91 63661 85856</p>
+          </div></div>
+          <div class="card"><div class="cover"></div><div class="body">
+            <h3>Links</h3>
+            <p>
+              <a class="pill" href="https://youtube.com/@okovo01?feature=shared" target="_blank" rel="noopener">YouTube</a>
+              <a class="pill" href="https://www.instagram.com/man__ishhh?igsh=MXMydTZrbGxtY25saQ==" target="_blank" rel="noopener">Instagram</a>
+              <span class="pill" title="Add later">LinkedIn (add)</span>
+              <span class="pill" title="Add later">GitHub (add)</span>
+            </p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container small">
+    <div>© <span id="y"></span> Manish Kumar · Designed in a Netflix‑inspired style</div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Toggle blog visibility
+    const toggle = document.getElementById('toggleBlog');
+    const blog = document.getElementById('blog');
+    if(toggle){
+      toggle.addEventListener('change', (e)=>{
+        blog.querySelector('#blog-cards').style.display = e.target.checked ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
+
